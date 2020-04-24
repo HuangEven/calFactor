@@ -93,6 +93,40 @@ def get_data_series(con, table, column, code, date_list):
     return pd.Series(data_list)
 
 
+def insert_factor_data(con,table,data_list):
+    cursor=con.cursor()
+    data_len=len(data_list[0])
+    str_list=['%s']*data_len
+    str=','.join(str_list)
+    str='(' + str + ')'
+    sql="insert into "+ table +" values"+str
+    try:
+        cursor.executemany(sql,data_list)
+        con.commit()
+    except Exception as e:
+        print(e)
+        con.rollback()
+
+
+def get_date_list_by_codes(con,start_date, end_date):
+    raw_date_list = gd.get_date_list(start_date, end_date)
+    raw_codes = get_all_codes(con)
+    init_list = [0] * len(raw_codes)
+    codes = pd.Series(init_list, index=raw_codes)
+    count = 0
+    for code in raw_codes:
+        date_list = []
+        count += 1
+        for date in raw_date_list:
+            df = pd.read_sql("select ts_code from daily where trade_date=%s", con, params=(date,))
+            if code in df['ts_code'].values:
+                date_list.append(date)
+        codes[code] = date_list
+        print(date_list)
+        print(count)
+
+    return codes
+
 class Factor:
     name = ''
     value = []
