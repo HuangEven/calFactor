@@ -2,6 +2,7 @@ import calculate_factors.get_date as gd
 import pandas as pd
 import math
 
+
 # table_name="daily"
 def create_table(db, table_name):
     cursor = db.cursor()
@@ -11,6 +12,40 @@ def create_table(db, table_name):
         db.commit()
     except:
         db.rollback()
+
+
+# 新建因子类表后更新更新股票-日期数据
+def insert_basic_column_val(con, table_name, codes):
+    code_list = get_all_codes(con)
+    data_list = []
+    cursor = con.cursor()
+    for code in code_list:
+        date_list = codes[code]
+        for date in date_list:
+            # date_int = gd.date_to_integer(date)
+            data_list.append((code, date))
+    # 考虑到executemany性能远优于execute，当有不满足主码唯一性时忽略
+    try:
+        sql_insert = "INSERT IGNORE INTO " + table_name + "(ts_code,trade_date) VALUES(%s,%s)"
+        cursor.executemany(sql_insert, data_list)
+        con.commit()
+        print("更新" + table_name)
+    except:
+        print(table_name+"更新失败")
+        con.rollback()
+
+
+# 在trade_date字段添加索引
+def add_trade_date_index(con,table_name):
+    cursor=con.cursor()
+    index_name="ix_trade_date_"+table_name
+    try:
+        sql_index="ALTER TABLE "+ table_name + " ADD INDEX "+index_name+"(trade_date)"
+        cursor.execute(sql_index)
+        con.commit()
+    except:
+        print("建立索引失败！")
+        con.rollback()
 
 
 # table_name="'daily'"
