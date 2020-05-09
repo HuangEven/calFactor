@@ -45,39 +45,22 @@ def init_table(con, table_name, codes):
     si.insert_basic_column_val(con, table_name, codes)
 
 
-def get_date_list_by_codes(start_date, end_date):
-    con = pymysql.connect(host="localhost", user="root", passwd="mysql", db="stockvision")
-    raw_date_list = gd.get_date_list(start_date, end_date)
-    raw_codes = si.get_all_codes(con)
-    init_list = [0] * len(raw_codes)
-    codes = pd.Series(init_list, index=raw_codes)
-    count = 0
-    for code in raw_codes:
-        date_list = []
-        count += 1
-        for date in raw_date_list:
-            df = pd.read_sql("select ts_code from daily where trade_date=%s", con, params=(date,))
-            if code in df['ts_code'].values:
-                date_list.append(date)
-        codes[code] = date_list
-        print(date_list)
-        print(count)
 
-    return codes
 
 
 if __name__ == "__main__":
-    start_date = '20171201'
-    end_date = '20180101'
-    #codes = get_date_list_by_codes(start_date, end_date)
-    #np.save('data.npy', codes)
+    start_date = '20180113'
+    end_date = '20180213'
 
     con = pymysql.connect(host="localhost", user="root", passwd="mysql", db="stockvision")
+    #codes = si.get_date_list_by_codes(con,start_date, end_date)
+    #np.save('data_test.npy', codes)
     pool = si.get_all_codes(con)
     #print(pool)
-    codes = np.load('data.npy')
+    codes = np.load('data_test.npy')
     codes = pd.Series(codes, index=pool)
-    uf.add_factor(con,"profit_factor","log_return#daily.close#5",codes)
+    uf.update_factor_in_category(con,"profit_factor",["log_return#daily.close#5"],'20180213',codes)
+    #uf.add_factor(con,"profit_factor","log_return#daily.close#5",codes)
     #uf.add_factor_category(con,"profit_factor",codes)
 
     #init(codes)

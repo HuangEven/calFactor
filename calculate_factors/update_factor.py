@@ -55,12 +55,17 @@ def add_factor(con,category,factor,code_date_series):
 
 
 # 一个因子类一个因子类地解析,并更新数据
-def update_factor_in_category(con,category,factors,codes,cur_date,code_date_series):
-
+def update_factor_in_category(con,category,factors,cur_date,code_date_series):
     # 解析
     basic_data_info,factor_list=resolve_factors(factors)
+    print(basic_data_info)
 
-    data_list=[]    # 存储新增数据集
+    # 获取该因子类中因子字段及它们的排列情况
+    fields=si.get_table_fields(con,category)
+    print(fields)
+
+    codes=si.get_all_codes(con)
+    data_list=[]    # 存储所有因子数据
     for code in codes:
         # 根据收集的信息从数据库中去获取基础数据
         for table in basic_data_info:
@@ -71,22 +76,32 @@ def update_factor_in_category(con,category,factors,codes,cur_date,code_date_seri
             basic_data_info[table]=dict
 
         code_list=[code,cur_date]
+        row={}
         # 计算因子,通过反射找到方法并传入参数计算
-        # 注意之后要进行数据对齐
-        # 为了避免不同时间窗口下计算的因子数据结果长度不同，只取最后一天数据
+        # 注意之后要进行数据对齐，为了避免不同时间窗口下计算的因子数据结果长度不同，只取最后一天数据
         for factor in factor_list:
             func = getattr(module_dict[category], factor["name"])
-            param_list=[]
+            param_list=[]   # 存放参数列表
+            # 获取参数
             for table in factor["params0"]:
                 for field in factor["params0"][table]:
                     param_list.append(basic_data_info[table][field])
+            for val in factor["params1"]:
+                param_list.append(val)
 
-            ret_data=func(param_list)
-            code_list.append(ret_data[len(ret_data)-1])     # 只取最后一天（当日的数据）
+            ret_data=func(param_list)   # 调用函数计算因子
+            if len(ret_data)>0:
+                data=ret_data[len(ret_data)-1]  # 只取最后一天（当日的数据）
+                row[factor["field"]]=float("%.5f" % data)
 
-        data_list.append(code_list)
+        if row:     # 字典对象不为空
+            # 重新排序使得结果与表中字段顺序一致
+            for field in fields:
+                code_list.append(row[field])
+            print(code_list)
+            data_list.append(code_list)     # 添加该股票下的因子数据
 
-    si.insert_factor_data(con,category,data_list)
+    si.insert_factor_data(con,category,data_list)   # 批量更新当天的因子数据
 
 
 # key#daily.close_daily.open#n_m
@@ -107,12 +122,16 @@ def resolve_factors(factors):
                 basic_data_info[params[0]]=[]
             params0_dict[params[0]].append(params[1])   # 不可能重复，所以不需要判断字段是否已存在
             if params[1] not in basic_data_info[params[0]]: # params[0]对应基本表信息，params[1]对应字段信息
-                basic_data_info[params[0]]=params[1]        # 出现基本表中新的字段
-        params1_list=int(str_list[2].split('_'))
+                basic_data_info[params[0]].append(params[1])        # 出现基本表中新的字段
 
-        str_dict={'name':name,'params0':params0_dict,'params1':params1_list}
+        params1_list=[]  # 计算该因子的一些常量参数
+        for val in str_list[2].split('_'):
+            params1_list.append(int(val))
+
+        factor_field=str_list[0]+"_"+str_list[2]
+
+        str_dict={'name':name,'params0':params0_dict,'params1':params1_list,'field':factor_field}
         factor_list.append(str_dict)
-
 
     return basic_data_info,factor_list
 

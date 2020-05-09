@@ -61,6 +61,22 @@ def select_field(cursor, table_name, column_name):
     return ret[0]
 
 
+# 获取表中所有因子字段以及他们的顺序信息
+def get_table_fields(con,table_name):
+    cursor=con.cursor()
+    cursor.execute("select column_name from information_schema.columns where table_name = %s",
+                   (table_name,))
+    ret = cursor.fetchall()
+
+    factor_fields=[]
+    for ele in ret:
+        if ele[0]=='ts_code' or ele[0]=='trade_date':
+            continue
+        factor_fields.append(ele[0])
+
+    return factor_fields
+
+
 # 获取所有股票代码
 def get_all_codes(con):
     sql = "SELECT ts_code from stock_basic"
@@ -132,6 +148,7 @@ def get_data_series(con, table, column, code, date_list):
     return pd.Series(data_list)
 
 
+# 向因子表中插入一条记录
 def insert_factor_data(con,table,data_list):
     cursor=con.cursor()
     data_len=len(data_list[0])
@@ -147,6 +164,7 @@ def insert_factor_data(con,table,data_list):
         con.rollback()
 
 
+# 根据股票的日线行情得到股票的交易日序列
 def get_date_list_by_codes(con,start_date, end_date):
     raw_date_list = gd.get_date_list(start_date, end_date)
     raw_codes = get_all_codes(con)
@@ -165,6 +183,7 @@ def get_date_list_by_codes(con,start_date, end_date):
         print(count)
 
     return codes
+
 
 class Factor:
     name = ''
