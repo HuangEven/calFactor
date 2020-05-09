@@ -2,6 +2,10 @@ import calculate_factors.sql_interact as si
 import calculate_factors.profit_factor as profit_factor
 
 
+# 全局变量，将模块信息保存下来
+module_dict={"profit_factor":profit_factor}
+
+
 # 新增因子类
 def add_factor_category(con,category,code_date_series):
     # 创建表
@@ -15,11 +19,15 @@ def add_factor_category(con,category,code_date_series):
 
 
 # 新增因子
-def add_factor(con,category,factor,codes,date_list,code_date_series):
-
+def add_factor(con,category,factor,code_date_series):
     # 解析因子
-    basic_data_info,factor_list=resolve_factor(factor)
+    basic_data_info,factor_dict,factor_filed=resolve_factor(factor)
+    print(basic_data_info)
 
+    # 增加字段
+    si.add_factor_column(con,category,factor_filed)
+
+    codes=si.get_all_codes(con)
     values=[]
     for code in codes:
         # 根据收集的信息从数据库中去获取基础数据
@@ -30,22 +38,25 @@ def add_factor(con,category,factor,codes,date_list,code_date_series):
             # 更新基础数据
             basic_data_info[table]=dict
 
-        func = getattr(category, factor["name"])
+        func = getattr(module_dict[category], factor_dict["name"])  # 通过反射拿到相应的函数对象
         param_list=[]
-        for table in factor["params0"]:
-            for field in factor["params0"][table]:
+        # 向参数列表中计算因子要用到的基本数据
+        for table in factor_dict["params0"]:
+            for field in factor_dict["params0"][table]:
                 param_list.append(basic_data_info[table][field])
+        # 向参数列表中增加常数参数
+        for val in factor_dict["params1"]:
+            param_list.append(val)
+        ret_data=func(param_list)   # 计算因子
+        values += si.get_column_tuple_list(code,code_date_series[code],ret_data)    # 增加该股票下的因子数据
 
-        ret_data=func(param_list)
-        values.append(si.get_column_tuple_list(code,date_list,ret_data))
-
-    si.update_factor_column(con, category, factor, values)
+    # 更新数据
+    si.update_factor_column(con, category, factor_filed, values)
 
 
 # 一个因子类一个因子类地解析,并更新数据
 def update_factor_in_category(con,category,factors,codes,cur_date,code_date_series):
 
-    module_dict={"profit_factor":profit_factor}
     # 解析
     basic_data_info,factor_list=resolve_factors(factors)
 
@@ -102,23 +113,39 @@ def resolve_factors(factors):
         str_dict={'name':name,'params0':params0_dict,'params1':params1_list}
         factor_list.append(str_dict)
 
+
     return basic_data_info,factor_list
 
+
+# key#daily.close_daily.open#n_m
 # 通过因子key解析要计算该因子所需要用到的基础数据以及其他参数
 def resolve_factor(factor):
     basic_data_info={}
-    str_list=str.split('#')
-    name=str_list[0]
-    params0_list=str_list[1].split('_')
-    params0_dict={}
+    str_list=factor.split("#")
+    name=str_list[0]    # 计算该因子的函数名称
+    params0_list=str_list[1].split("_")
+    params0_dict={}  # 计算该因子所需要的基础数据信息
     for p_str in params0_list:
-        params=p_str.split('.')
+        params=p_str.split(".")
         if params[0] not in params0_dict:      # 若字典中没有该项，新增
             params0_dict[params[0]]=[]
+        if params[0] not in basic_data_info:    # 收集信息中没有该项，增加
+            basic_data_info[params[0]]=[]
         params0_dict[params[0]].append(params[1])   # 不可能重复，所以不需要判断字段是否已存在
         if params[1] not in basic_data_info[params[0]]: # params[0]对应基本表信息，params[1]对应字段信息
-            basic_data_info[params[0]]=params[1]        # 出现基本表中新的字段
-    params1_list=int(str_list[2].split('_'))
+            basic_data_info[params[0]].append(params[1])        # 出现基本表中新的字段
+
+    params1_list=[]  # 计算该因子的一些常量参数
+    for val in str_list[2].split('_'):
+        params1_list.append(int(val))
+
+    # 将计算该因子的函数名称、计算该因子所需要的基础数据信息、计算该因子的一些常量参数封装
     str_dict={'name':name,'params0':params0_dict,'params1':params1_list}
 
-    return basic_data_info,str_dict
+    # mysql的字段不能进行复杂的标点符号处理
+    # 将因子名转化为mysql可接受的字段
+    factor_field=str_list[0]+"_"+str_list[2]
+
+    return basic_data_info,str_dict,factor_field
+
+

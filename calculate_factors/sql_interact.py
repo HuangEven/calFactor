@@ -83,24 +83,28 @@ def get_column_tuple_list(code, date_list, data_list):
     return ret
 
 
+# 新增因子字段
+def add_factor_column(con,table_name,column_name):
+    cursor=con.cursor()
+    try:
+        sql = "ALTER TABLE " + table_name + " ADD COLUMN " + column_name + " float"
+        print(sql)
+        cursor.execute(sql)
+        con.commit()
+        print("新建" + column_name + "字段")
+    except Exception as e:
+        print(e)
+        con.rollback()
+
+
 # 更新某个因子所有股票的数据
 def update_factor_column(con, table_name, column_name, data_list):
     cursor = con.cursor()
-    # 若数据库中没有该列,新增字段
-    if (select_field(cursor, table_name, column_name) == 0):
-        try:
-            sql = "ALTER TABLE " + table_name + " ADD COLUMN " + column_name + " float"
-            cursor.execute(sql)
-            con.commit()
-            print("新建" + column_name + "字段")
-        except:
-            con.rollback()
-
     # print(data_list)
     # 更新记录，若已有数据相当于再更新一次
     # sql = "INSERT INTO " + table_name + "(ts_code,trade_date," + column_name + ") VALUES(%s,%s,1) on duplicate key "+column_name+"=%s"
     # for data in data_list:
-    print(len(data_list))
+    # print(len(data_list))
     try:
         sql = "update " + table_name + " set " + column_name + "=%s where ts_code=%s and trade_date=%s"
         cursor.executemany(sql, data_list)
@@ -122,9 +126,9 @@ def get_data_series(con, table, column, code, date_list):
             ret = cursor.fetchone()
             data_list.append(ret[0])
         except:
-            print("Fetch close data of " + code + d + " Error.")
-    print(column+" "+table,end=":")
-    print(data_list)
+            print("Fetch close data of " + code + d + column + table + " Error.")
+    # print(column+" "+table,end=":")
+    # print(data_list)
     return pd.Series(data_list)
 
 

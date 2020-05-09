@@ -7,6 +7,7 @@ import calculate_factors.profit_factors as profit_factors
 import calculate_factors.emotion_factors as emotion_factors
 import calculate_factors.sql_interact as si
 import calculate_factors.get_date as gd
+import calculate_factors.update_factor as uf
 
 import pandas as pd
 import numpy as np
@@ -72,10 +73,12 @@ if __name__ == "__main__":
     #np.save('data.npy', codes)
 
     con = pymysql.connect(host="localhost", user="root", passwd="mysql", db="stockvision")
-    # pool = si.get_all_codes(con)
+    pool = si.get_all_codes(con)
     #print(pool)
-    #codes = np.load('data.npy')
-    #codes = pd.Series(codes, index=pool)
+    codes = np.load('data.npy')
+    codes = pd.Series(codes, index=pool)
+    uf.add_factor(con,"profit_factor","log_return#daily.close#5",codes)
+    #uf.add_factor_category(con,"profit_factor",codes)
 
     #init(codes)
     # profit_factors.update_profit_factor(codes)
