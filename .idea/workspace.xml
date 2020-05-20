@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95ddd55b-e5a7-4c38-9ddf-02a730f9bb18" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/calculate_factors/emotion_factor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/calculate_factors/fluctuate_factor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculate_factors/sql_interact.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculate_factors/sql_interact.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculate_factors/update_factor.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculate_factors/update_factor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_month.npy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/get_factors.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_factors.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/cal_factor$get_factors.coverage" NAME="get_factors Coverage Results" MODIFIED="1589036532841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cal_factor$get_factors.coverage" NAME="get_factors Coverage Results" MODIFIED="1589279293268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -51,13 +51,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calculate_factors/motive_factors.py">
+        <entry file="file://$PROJECT_DIR$/calculate_factors/emotion_factors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="116" column="58" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="25">
+              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -65,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_factors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+            <state relative-caret-position="1250">
+              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -75,10 +72,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calculate_factors/emotion_factors.py">
+        <entry file="file://$PROJECT_DIR$/calculate_factors/emotion_factor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-70">
-              <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+            <state>
+              <caret selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -86,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/calculate_factors/fluctuate_factors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-751">
-              <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+            <state relative-caret-position="276">
+              <caret line="120" column="51" lean-forward="true" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -96,13 +93,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/calculate_factors/update_factor.py">
+        <entry file="file://$PROJECT_DIR$/calculate_factors/fluctuate_factor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="290">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
             </state>
           </provider>
         </entry>
@@ -110,17 +104,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/calculate_factors/motive_factor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="43" lean-forward="true" selection-start-column="43" selection-end-column="43" />
+            <state relative-caret-position="400">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calculate_factors/profit_factor.py">
+        <entry file="file://$PROJECT_DIR$/calculate_factors/analyst_factors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+            <state relative-caret-position="75">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/calculate_factors/develop_factors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -128,22 +131,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/calculate_factors/sql_interact.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="95" column="35" lean-forward="true" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="35" />
+            <state relative-caret-position="144">
+              <caret line="161" column="24" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calculate_factors/profit_factors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="66" column="85" selection-start-line="66" selection-start-column="85" selection-end-line="66" selection-end-column="85" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,6 +178,7 @@
       <find>factors</find>
       <find>params1_list</find>
       <find>字段</find>
+      <find>exce</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -208,17 +200,19 @@
         <option value="$PROJECT_DIR$/calculate_factors/motive_factors.py" />
         <option value="$PROJECT_DIR$/calculate_factors/profit_factor.py" />
         <option value="$PROJECT_DIR$/calculate_factors/motive_factor.py" />
-        <option value="$PROJECT_DIR$/get_factors.py" />
-        <option value="$PROJECT_DIR$/calculate_factors/sql_interact.py" />
         <option value="$PROJECT_DIR$/calculate_factors/update_factor.py" />
+        <option value="$PROJECT_DIR$/calculate_factors/sql_interact.py" />
+        <option value="$PROJECT_DIR$/get_factors.py" />
+        <option value="$PROJECT_DIR$/calculate_factors/emotion_factor.py" />
+        <option value="$PROJECT_DIR$/calculate_factors/fluctuate_factor.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="93" />
-    <option name="y" value="118" />
-    <option name="width" value="1053" />
-    <option name="height" value="609" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="73" />
+    <option name="y" value="54" />
+    <option name="width" value="1212" />
+    <option name="height" value="649" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -227,7 +221,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -244,13 +237,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589037135928" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589964975944" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../springcloud-python" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -342,7 +336,14 @@
       <workItem from="1588561215555" duration="650000" />
       <workItem from="1588582851805" duration="1177000" />
       <workItem from="1588839940397" duration="2314000" />
-      <workItem from="1588909443829" duration="35737000" />
+      <workItem from="1588909443829" duration="35988000" />
+      <workItem from="1589076446005" duration="640000" />
+      <workItem from="1589110566558" duration="590000" />
+      <workItem from="1589250138652" duration="1722000" />
+      <workItem from="1589252119200" duration="248000" />
+      <workItem from="1589276792129" duration="7504000" />
+      <workItem from="1589334000263" duration="908000" />
+      <workItem from="1589962855974" duration="2118000" />
     </task>
     <task id="LOCAL-00001" summary="更新因子处理初步">
       <created>1587702439789</created>
@@ -365,11 +366,18 @@
       <option name="project" value="LOCAL" />
       <updated>1589020744758</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="第一阶段测试通过">
+      <created>1589037215195</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589037215195</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243550000" />
+    <option name="totallyTimeSpent" value="257531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -381,10 +389,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="81" y="38" width="1212" height="649" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4958217" visible="true" weight="0.14750378" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4958217" visible="true" weight="0.19444445" />
       <window_info id="Structure" order="1" sideWeight="0.5041783" side_tool="true" weight="0.17019667" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -393,7 +401,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32890365" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16229509" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26407766" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -464,7 +472,8 @@
     <MESSAGE value="更新因子处理初步" />
     <MESSAGE value="新增因子和新增因子类，初步完成整个流程" />
     <MESSAGE value="新增因子和新增因子类功能测试完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增因子和新增因子类功能测试完成" />
+    <MESSAGE value="第一阶段测试通过" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一阶段测试通过" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Python/Python38/Lib/site-packages/pandas/core/series.py">
@@ -516,6 +525,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="999">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/motive_factors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2825">
+          <caret line="116" column="58" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/update_factor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2600">
+          <caret line="105" selection-start-line="105" selection-end-line="105" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/profit_factor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/profit_factors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1550">
+          <caret line="66" column="85" selection-start-line="66" selection-start-column="85" selection-end-line="66" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/get_date.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/motive_factor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/calculate_factors/analyst_factors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -530,75 +597,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/get_date.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/feature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="191" selection-start-line="191" selection-end-line="191" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/motive_factors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="116" column="58" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/profit_factors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="66" column="85" selection-start-line="66" selection-start-column="85" selection-end-line="66" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/fluctuate_factors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-751">
-          <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/calculate_factors/emotion_factors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/motive_factor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="43" lean-forward="true" selection-start-column="43" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/profit_factor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        <state relative-caret-position="25">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/get_factors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+        <state relative-caret-position="1250">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
           <folding>
             <element signature="e#0#55#0" expanded="true" />
           </folding>
@@ -607,21 +616,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/calculate_factors/sql_interact.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="95" column="35" lean-forward="true" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="35" />
+        <state relative-caret-position="144">
+          <caret line="161" column="24" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calculate_factors/update_factor.py">
+    <entry file="file://$PROJECT_DIR$/calculate_factors/fluctuate_factors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+        <state relative-caret-position="276">
+          <caret line="120" column="51" lean-forward="true" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/emotion_factor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculate_factors/fluctuate_factor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>

@@ -49,17 +49,17 @@ def init_table(con, table_name, codes):
 
 
 if __name__ == "__main__":
-    start_date = '20180113'
+    start_date = '20160113'
     end_date = '20180213'
 
     con = pymysql.connect(host="localhost", user="root", passwd="mysql", db="stockvision")
-    #codes = si.get_date_list_by_codes(con,start_date, end_date)
+    codes = si.get_date_list_by_codes(con,start_date, end_date)
     #np.save('data_test.npy', codes)
-    pool = si.get_all_codes(con)
+    #pool = si.get_all_codes(con)
     #print(pool)
-    codes = np.load('data_test.npy')
-    codes = pd.Series(codes, index=pool)
-    uf.update_factor_in_category(con,"profit_factor",["log_return#daily.close#5"],'20180213',codes)
+    #codes = np.load('data_test.npy')
+    #codes = pd.Series(codes, index=pool)
+    #uf.update_factor_in_category(con,"profit_factor",["log_return#daily.close#5"],'20180213',codes)
     #uf.add_factor(con,"profit_factor","log_return#daily.close#5",codes)
     #uf.add_factor_category(con,"profit_factor",codes)
 

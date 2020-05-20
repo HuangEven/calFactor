@@ -163,24 +163,31 @@ def insert_factor_data(con,table,data_list):
         print(e)
         con.rollback()
 
+def get_str_from_list(str_list):
+    str = ''
+    for i in range(len(str_list)):
+        if i != len(str_list) - 1:
+            temp = str_list[i] + ','
+        else:
+            temp = str_list[i]
+        str += temp
 
-# 根据股票的日线行情得到股票的交易日序列
+    return str
+
+# 根据股票的日线行情得到股票的连续的交易日序列
 def get_date_list_by_codes(con,start_date, end_date):
     raw_date_list = gd.get_date_list(start_date, end_date)
     raw_codes = get_all_codes(con)
     init_list = [0] * len(raw_codes)
     codes = pd.Series(init_list, index=raw_codes)
-    count = 0
+    dates_str=str(raw_date_list)[1:-1]
+
     for code in raw_codes:
-        date_list = []
-        count += 1
-        for date in raw_date_list:
-            df = pd.read_sql("select ts_code from daily where trade_date=%s", con, params=(date,))
-            if code in df['ts_code'].values:
-                date_list.append(date)
-        codes[code] = date_list
-        print(date_list)
-        print(count)
+        sql = "select trade_date from daily where trade_date in (" + dates_str + ") and ts_code=%s"
+        df = pd.read_sql(sql, con, params=(code,))
+        dates=list(df['trade_date'])
+        print(dates)
+        codes[code] = dates
 
     return codes
 
